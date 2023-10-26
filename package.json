@@ -1,0 +1,57 @@
+{
+    "name": "storefront-search-as-you-type",
+    "version": "0.3.12",
+    "license": "MIT",
+    "engines": {
+        "npm": ">=10.0.0",
+        "node": ">=18.0.0"
+    },
+    "scripts": {
+        "start": "webpack serve --config webpack.dev.js",
+        "build": "webpack --config webpack.prod.js",
+        "build:dev": "webpack --config webpack.dev.js",
+        "lint": "eslint .",
+        "lint:fix": "eslint --fix .",
+        "format": "prettier --check \"./**/*.{ts,tsx,js,css,json,md}\"",
+        "format:fix": "prettier --write  \"./**/*.{ts,tsx,js,css,json,md}\""
+    },
+    "devDependencies": {
+        "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
+        "@testing-library/dom": "^7.31.2",
+        "@testing-library/react": "^11.2.7",
+        "@testing-library/user-event": "^12.8.3",
+        "@types/react": "^17.0.69",
+        "@types/react-dom": "^18.2.14",
+        "@types/styled-components": "^5.1.29",
+        "@typescript-eslint/eslint-plugin": "^6.9.0",
+        "@typescript-eslint/parser": "^6.9.0",
+        "clean-webpack-plugin": "^3.0.0",
+        "eslint": "^7.32.0",
+        "eslint-config-prettier": "^7.2.0",
+        "eslint-plugin-jsx-a11y": "^6.7.1",
+        "eslint-plugin-prettier": "^3.4.1",
+        "eslint-plugin-react": "^7.33.2",
+        "eslint-plugin-simple-import-sort": "^7.0.0",
+        "fork-ts-checker-webpack-plugin": "^7.3.0",
+        "html-webpack-plugin": "^5.5.3",
+        "lint-staged": "^10.5.4",
+        "mini-css-extract-plugin": "^2.7.6",
+        "preact-svg-loader": "^0.2.1",
+        "prettier": "^3.0.3",
+        "styled-components": "^5.3.11",
+        "terser-webpack-plugin": "^5.3.9",
+        "ts-loader": "^8.4.0",
+        "typescript": "^5.2.2",
+        "webpack": "^5.89.0",
+        "webpack-bundle-analyzer": "^4.9.1",
+        "webpack-cli": "^5.1.4",
+        "webpack-dev-server": "^4.15.1",
+        "webpack-merge": "^5.10.0"
+    },
+    "dependencies": {
+        "@magento/storefront-search-as-you-type": "^1.0.3",
+        "currency-symbol-map": "^5.1.0",
+        "npm": "^10.2.1",
+        "preact": "^10.18.1"
+    }
+}

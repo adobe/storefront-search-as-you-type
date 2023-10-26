@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>LiveSearch from Adobe Commerce powered by Adobe Sensei</title>
+    </head>
+
+    <body style="width: 100vw; height: 100vh; margin: 0; padding-top: 50px">
+        <div class="block block-search">
+            <div
+                class="block block-content"
+                style="margin-bottom: 0; display: block"
+            >
+                <form
+                    class="form minisearch"
+                    id="search_mini_form"
+                    action="#"
+                    method="get"
+                    style="display: block; margin-top: 0em"
+                >
+                    <div
+                        class="field search"
+                        style="margin-bottom: 0; display: block"
+                    >
+                        <label
+                            class="label"
+                            for="search"
+                            data-role="minisearch-label"
+                        >
+                            <span>Search</span>
+                        </label>
+                        <div
+                            class="control"
+                            style="position: fixed; right: 100px"
+                        >
+                            <input
+                                id="search"
+                                style="display: block; margin-left: auto"
+                                type="text"
+                                name="q"
+                                value=""
+                                placeholder="Search entire store here..."
+                                class="input-text"
+                                maxlength="128"
+                                role="combobox"
+                                aria-haspopup="false"
+                                aria-autocomplete="both"
+                                autocomplete="off"
+                                aria-expanded="false"
+                                onchange=""
+                            />
+                            <div
+                                id="search_autocomplete"
+                                class="search-autocomplete"
+                            ></div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/@adobe/magento-storefront-events-sdk@qa/dist/index.js"
+        ></script>
+
+        <script
+            type="text/javascript"
+            src="https://unpkg.com/@adobe/magento-storefront-event-collector@qa/dist/index.js"
+        ></script>
+
+        <script type="text/javascript">
+            const mse = window.magentoStorefrontEvents;
+
+            mse.context.setMagentoExtension({
+                magentoExtensionVersion: "1.0.0",
+            });
+            mse.context.setShopper({ shopperId: "logged-in" });
+
+            mse.context.setPage({
+                pageType: "pdp",
+                maxXOffset: 0,
+                maxYOffset: 0,
+                minXOffset: 0,
+                minYOffset: 0,
+                ping_interval: 5,
+                pings: 1,
+            });
+
+            mse.context.setStorefrontInstance({
+                environmentId: "aaaaaa",
+                instanceId: "bbbbbb",
+                environment: "test",
+                storeUrl: "https://magento.com",
+                websiteId: 123456,
+                websiteCode: "cccccc",
+                storeId: 123456,
+                storeCode: "dddddd",
+                storeViewId: 123456,
+                storeViewCode: "eeeeee",
+                websiteName: "magento",
+                storeName: "magento",
+                storeViewName: "ffffff",
+                baseCurrencyCode: "USD",
+                storeViewCurrencyCode: "USD",
+                catalogExtensionVersion: "1.0.0",
+            });
+        </script>
+        <script type="text/javascript" async>
+            setTimeout(() => {
+                new window.LiveSearchAutocomplete({
+                    environmentId: "ENVIRONMENT_ID",
+                    websiteCode: "WEBSITE_CODE",
+                    storeCode: "STORE_CODE",
+                    storeViewCode: "STORE_VIEW_CODE",
+                    // Example of a route function
+                    // route: ({ sku }) => {
+                    //     const redirectUrl = "/content";
+                    //     return `${redirectUrl}/${sku}`;
+                    //     // Will result to `http://localhost:8080/MT11`
+                    // },
+                    // Example for 'View all' or on Enter
+                    // searchRoute: {
+                    //   route: `content/search.html`,
+                    //   query: "search_query",
+                    // },
+                });
+            }, 1000);
+        </script>
+    </body>
+</html>
