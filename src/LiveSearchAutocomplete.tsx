@@ -7,7 +7,6 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import { LiveSearch } from "@magento/storefront-search-as-you-type";
 import React from "react";
 import { createRoot } from "react-dom/client";
 import {
@@ -18,6 +17,7 @@ import {
 import { handleMobileDisplay, searchUnitId } from "utils";
 
 import AttachedPopover from "./components/AttachedPopover";
+import { LiveSearch } from "./utils/LiveSearch";
 
 interface LiveSearchProps {
     formSelector?: string;

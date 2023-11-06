@@ -16,6 +16,7 @@
         "format:fix": "prettier --write  \"./**/*.{ts,tsx,js,css,json,md}\""
     },
     "devDependencies": {
+        "@adobe/magento-storefront-events-sdk": "^1.5.4",
         "@pmmmwh/react-refresh-webpack-plugin": "^0.5.11",
         "@testing-library/dom": "^7.31.2",
         "@testing-library/react": "^11.2.7",
@@ -23,6 +24,7 @@
         "@types/react": "^17.0.69",
         "@types/react-dom": "^18.2.14",
         "@types/styled-components": "^5.1.29",
+        "@types/uuid": "^9.0.6",
         "@typescript-eslint/eslint-plugin": "^6.9.0",
         "@typescript-eslint/parser": "^6.9.0",
         "clean-webpack-plugin": "^3.0.0",
@@ -52,6 +54,7 @@
         "@magento/storefront-search-as-you-type": "^1.0.3",
         "currency-symbol-map": "^5.1.0",
         "npm": "^10.2.1",
-        "preact": "^10.18.1"
+        "preact": "^10.18.1",
+        "uuid": "^9.0.1"
     }
 }
