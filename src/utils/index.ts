@@ -7,6 +7,12 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
+export * from "./LiveSearch";
+export * from "./closeOnBlur";
 export * from "./constants";
+export * from "./context";
+export * from "./getProductImageURL";
+export * from "./getProductPrice";
+export * from "./htmlStringDecode";
 export * from "./mobileHelperFunctions";
-export * from "./productHelperFunctions";
+

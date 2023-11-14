@@ -7,17 +7,16 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import React from "react";
+import AttachedPopover from "components/AttachedPopover";
+import { default as React } from "react";
 import { createRoot } from "react-dom/client";
 import {
     QueryContextInput,
     RedirectRouteFunc,
     StoreDetailsConfig,
 } from "types/interface";
-import { handleMobileDisplay, searchUnitId } from "utils";
+import { handleMobileDisplay, LiveSearch, searchUnitId } from "utils";
 
-import AttachedPopover from "./components/AttachedPopover";
-import { LiveSearch } from "./utils/LiveSearch";
 
 interface LiveSearchProps {
     formSelector?: string;
@@ -52,7 +51,7 @@ class LiveSearchAutocomplete {
     private pageSize: number;
     private currencySymbol: string;
     private currencyRate: string;
-    private displayOutOfStock: string;
+    private displayOutOfStock: string | boolean;
     private context: QueryContextInput;
 
     constructor(storeDetails: StoreDetailsProps);

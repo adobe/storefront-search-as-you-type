@@ -18,4 +18,5 @@ declare global {
     }
 
     const API_URL: string;
+    const REACT_APP: boolean;
 }

@@ -4,6 +4,10 @@ const webpack = require("webpack");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const TerserPlugin = require("terser-webpack-plugin");
 const { CleanWebpackPlugin } = require("clean-webpack-plugin");
+const createStyledComponentsTransformer =
+    require("typescript-plugin-styled-components").default;
+
+const styledComponentsTransformer = createStyledComponentsTransformer();
 
 const banner = `${pkg.name}@v${pkg.version}`;
 const MAJOR_VERSION = `v${pkg.version.split(".")[0]}`;
@@ -38,6 +42,7 @@ const commonConfig = {
         modules: ["src", "node_modules"],
         alias: {
             "components": path.resolve(__dirname, "src/components/"),
+            "hooks": path.resolve(__dirname, "src/hooks/"),
             "styles": path.resolve(__dirname, "src/styles/"),
             "utils": path.resolve(__dirname, "src/utils/"),
             "react": "preact/compat",
@@ -91,6 +96,9 @@ const commonConfig = {
                     {
                         loader: require.resolve("ts-loader"),
                         options: {
+                            getCustomTransformers: () => ({
+                                before: [styledComponentsTransformer],
+                            }),
                             transpileOnly: true,
                         },
                     },
@@ -104,7 +112,7 @@ const commonConfig = {
             },
             {
                 test: /\.svg$/,
-                loader: "preact-svg-loader",
+                use: ["url-loader"],
             },
         ],
     },

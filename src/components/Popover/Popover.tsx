@@ -7,7 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import React, { FC } from "preact/compat";
+import React, { FC } from "react";
 import {
     getProductImageURL,
     getProductPrice,
@@ -18,12 +18,12 @@ import {
 } from "utils";
 
 import { Grid, ProductImage, StyledLink, StyledText } from "../../styles";
+import NoImageSvg from "../assets/NoImage.svg";
 import {
     Product,
     ProductSearchResponse,
     RedirectRouteFunc,
-} from "../../types/interface";
-import NoImage from "../assets/NoImage.svg";
+} from "../types/interface";
 
 /**
  * This component renders a styled popover populated with results from search
@@ -280,15 +280,11 @@ const ProductItem: FC<{
                 boxSizing={isMobile ? "border-box" : "inherit"}
                 onClick={onProductClick}
             >
-                {productImage ? (
-                    <ProductImage
-                        gridArea="image"
-                        customWidth="100%"
-                        src={productImage}
-                    />
-                ) : (
-                    <NoImage />
-                )}
+                <ProductImage
+                    gridArea="image"
+                    customWidth="100%"
+                    src={productImage || NoImageSvg}
+                />
                 <Grid
                     gridArea="productName"
                     alignSelf={isMobile ? "center" : "end"}

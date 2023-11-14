@@ -8,7 +8,6 @@ it.
 */
 
 // API Specific Types
-
 export interface RequestError {
     message: string;
     locations: Array<{ line: number; column: number }>;
@@ -31,11 +30,17 @@ export interface ClientProps {
 }
 
 export interface StoreDetailsConfig {
-    minQueryLength: number;
-    pageSize: number;
-    currencySymbol: string;
-    currencyRate: string;
-    displayOutOfStock?: string;
+    minQueryLength?: number;
+    pageSize?: number;
+    currencySymbol?: string;
+    currencyRate?: string;
+    currentCategoryUrlPath?: string;
+    categoryName?: string;
+    displaySearchBox?: boolean;
+    displayOutOfStock?: string | boolean;
+    allowAllProducts?: string | boolean;
+    displayMode?: string;
+    locale?: string;
 }
 
 export type RedirectRouteFunc = ({
@@ -47,7 +52,6 @@ export type RedirectRouteFunc = ({
     urlKey?: string;
     identifier?: string;
 }) => string;
-
 // Types
 export type BucketTypename = "ScalarBucket" | "RangeBucket" | "StatsBucket";
 
@@ -65,7 +69,7 @@ export interface ProductSearchQuery {
     phrase: string;
     pageSize?: number;
     currentPage?: number;
-    displayOutOfStock?: string;
+    displayOutOfStock?: string | boolean;
     filter?: SearchClauseInput[];
     sort?: ProductSearchSortInput[];
     xRequestId?: string;

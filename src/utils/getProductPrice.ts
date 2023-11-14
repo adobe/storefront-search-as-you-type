@@ -11,27 +11,6 @@ import getSymbolFromCurrency from "currency-symbol-map";
 
 import { Product } from "../types/interface";
 
-const getProductImageURL = (product: Product): string => {
-    const item = product.product;
-
-    let url = null;
-
-    if (item.thumbnail) {
-        url = item.thumbnail.url;
-    } else if (item.small_image) {
-        url = item.small_image.url;
-    } else if (item.image) {
-        url = item.image.url;
-    }
-
-    return url ?? "";
-};
-
-const htmlStringDecode = (input: string): string | null => {
-    const doc = new DOMParser().parseFromString(input, "text/html");
-    return doc.documentElement.textContent;
-};
-
 const getProductPrice = (
     product: Product,
     currencySymbol: string,
@@ -60,4 +39,4 @@ const getProductPrice = (
     }
 };
 
-export { getProductImageURL, getProductPrice, htmlStringDecode };
+export { getProductPrice };

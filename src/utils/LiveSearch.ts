@@ -18,7 +18,7 @@ import {
     SearchClauseInput,
 } from "../types/interface";
 import { updateSearchInputCtx, updateSearchResultsCtx } from "./context";
-import { getUserViewHistory, UserViewHistory } from "./getUserViewHistory";
+import { getUserViewHistory } from "./getUserViewHistory";
 
 export interface StoreDetailsProps {
     environmentId: string;
@@ -46,7 +46,7 @@ interface StoreDetailsConfig {
     pageSize?: number;
     currencySymbol?: string;
     currencyRate?: string;
-    displayOutOfStock?: string;
+    displayOutOfStock?: string | boolean; 
 }
 
 const getHeaders = (headers: MagentoHeaders) => {
@@ -87,7 +87,7 @@ class LiveSearch {
         this.currencySymbol = config?.currencySymbol ?? "";
         this.currencyRate = config?.currencyRate ?? "1";
         this.displayInStockOnly =
-            config?.displayOutOfStock === "1" ? false : true; // if displayOutOfStock === 1, then we should display all items
+            config?.displayOutOfStock === ("1" || true) ? false : true; 
         this.searchUnitId = searchUnitId;
         this.context = context || { customerGroup: "" };
         this.context.userViewHistory = getUserViewHistory() || [];

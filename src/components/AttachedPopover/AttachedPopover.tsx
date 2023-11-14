@@ -7,12 +7,8 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import {
-    useAttachListeners,
-    useAutocomplete,
-    useFocus,
-} from "@magento/storefront-search-as-you-type";
-import React, { FC, useEffect } from "preact/compat";
+import { useAttachListeners, useAutocomplete, useFocus } from "hooks";
+import React, { FC, useEffect } from "react";
 
 import Popover from "../Popover";
 import { ProductSearchResponse, RedirectRouteFunc } from "../types/interface";
