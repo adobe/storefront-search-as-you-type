@@ -34,12 +34,13 @@ import the script:
 These will be passed with the extension if you have your storefront setup
 
 #### Store Variables needed:
+
 ```
-      ENVIRONMENT_ID 
-      WEBSITE_CODE 
-      STORE_CODE 
-      STORE_VIEW_CODE 
-      CUSTOMER_GROUP_CODE 
+      ENVIRONMENT_ID
+      WEBSITE_CODE
+      STORE_CODE
+      STORE_VIEW_CODE
+      CUSTOMER_GROUP_CODE
 ```
 
 #### insert into store details config
@@ -79,7 +80,6 @@ You can see the example in [index.html](./public/index.html)
 
 This was build with our npm library: https://www.npmjs.com/package/@magento/storefront-search-as-you-type
 
-
 ## Styling 🎨
 
 -   Ideally use Spectrum components for layouts if that's not possible, use [flex](https://css-tricks.com/snippets/css/a-guide-to-flexbox/) or [grid](https://css-tricks.com/snippets/css/complete-guide-grid/) for layout.
@@ -90,7 +90,7 @@ This was build with our npm library: https://www.npmjs.com/package/@magento/stor
 
 ## Hosting with CDN
 
-Follow the below instructions on how to host with CDN and update your Commerce store to include your search-as-you-type page. 
+Follow the below instructions on how to host with CDN and update your Commerce store to include your search-as-you-type page.
 
 1. In the root of this repository, install dependencies: `npm install`
 1. Create a production build of the application: `npm run build`
@@ -111,3 +111,5 @@ NOTE: the below steps need to be updated to refer to the extension updates neede
 NOTE: the above steps need to be updated to refer to the extension updated needed for this component. ^^
 
 1. Those are all the required changes. Now redeploy your adobe commerce store code and see your new custom product listing page in your storefront.
+
+_The purpose of this project is to provide a dev-ready starting point for developers to implement the search popover. The project, repo, and any accompanying assets included herein (“Assets”) are provided “as-is” for your use solely at your sole discretion, risk, and responsibility. By using these Assets, you agree Adobe will in no event be responsible for any use of the Assets, including but not limited to any customizations made thereto, by you or any third party. Adobe will not provide any support of any kind for any customizations made to the Assets by anyone._
