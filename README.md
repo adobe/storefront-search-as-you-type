@@ -41,6 +41,8 @@ These will be passed with the extension if you have your storefront setup
       STORE_CODE
       STORE_VIEW_CODE
       CUSTOMER_GROUP_CODE
+      API_URL
+      API_KEY
 ```
 
 #### insert into store details config
@@ -51,6 +53,8 @@ const storeDetails = {
       websiteCode: 'WEBSITE_CODE',
       storeCode: 'STORE_CODE',
       storeViewCode: 'STORE_VIEW_CODE',
+      apiUrl: 'API_URL',
+      apiKey: 'API_KEY',
       config: {
         minQueryLength: 2,
         pageSize: 8,

@@ -28,7 +28,8 @@ export interface StoreDetailsProps {
     searchUnitId: string;
     config: StoreDetailsConfig;
     context?: QueryContextInput;
-    apiUrl?: string;
+    apiUrl: string;
+    apiKey: string;
     route?: RedirectRouteFunc;
     searchRoute?: {
         route: string;
@@ -46,7 +47,7 @@ interface StoreDetailsConfig {
     pageSize?: number;
     currencySymbol?: string;
     currencyRate?: string;
-    displayOutOfStock?: string | boolean; 
+    displayOutOfStock?: string | boolean;
 }
 
 const getHeaders = (headers: MagentoHeaders) => {
@@ -71,6 +72,7 @@ class LiveSearch {
     private context: QueryContextInput | undefined;
     private searchUnitId: string;
     private apiUrl: string;
+    private apiKey: string;
 
     constructor({
         environmentId,
@@ -81,17 +83,19 @@ class LiveSearch {
         config,
         context,
         apiUrl,
+        apiKey,
     }: StoreDetailsProps) {
         this.minQueryLength = config?.minQueryLength ?? 3;
         this.pageSize = Number(config?.pageSize) ? Number(config?.pageSize) : 6;
         this.currencySymbol = config?.currencySymbol ?? "";
         this.currencyRate = config?.currencyRate ?? "1";
         this.displayInStockOnly =
-            config?.displayOutOfStock === ("1" || true) ? false : true; 
+            config?.displayOutOfStock === ("1" || true) ? false : true;
         this.searchUnitId = searchUnitId;
         this.context = context || { customerGroup: "" };
         this.context.userViewHistory = getUserViewHistory() || [];
-        this.apiUrl = apiUrl ?? API_URL;
+        this.apiUrl = apiUrl;
+        this.apiKey = apiKey;
 
         if (!environmentId || !websiteCode || !storeCode || !storeViewCode) {
             throw new Error("Store details not found.");
@@ -102,7 +106,7 @@ class LiveSearch {
             websiteCode: websiteCode,
             storeCode: storeCode,
             storeViewCode: storeViewCode,
-            apiKey: "search_gql",
+            apiKey: this.apiKey,
             contentType: "application/json",
             apiUrl: this.apiUrl,
         };
@@ -147,7 +151,7 @@ class LiveSearch {
             websiteCode: this.search.websiteCode,
             storeCode: this.search.storeCode,
             storeViewCode: this.search.storeViewCode,
-            apiKey: "search_gql",
+            apiKey: this.apiKey,
             contentType: "application/json",
             xRequestId: searchRequestId,
         });

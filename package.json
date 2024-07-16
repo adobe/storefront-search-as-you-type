@@ -1,6 +1,6 @@
 {
     "name": "storefront-search-as-you-type",
-    "version": "0.3.14",
+    "version": "0.4.0",
     "license": "MIT",
     "engines": {
         "npm": ">=10.0.0",

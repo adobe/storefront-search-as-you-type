@@ -1,5 +1,4 @@
 // const path = require("path");
-const webpack = require("webpack");
 const { merge } = require("webpack-merge");
 const { commonConfig, publicPaths } = require("./webpack.common.js");
 const ForkTsCheckerWebpackPlugin = require("fork-ts-checker-webpack-plugin");
@@ -19,9 +18,6 @@ const devConfig = merge(commonConfig, {
             template: __dirname + "/public/index.html",
             inject: "body",
             filename: "index.html",
-        }),
-        new webpack.DefinePlugin({
-            API_URL: JSON.stringify("https://commerce.adobe.io/search/graphql"),
         }),
         new ForkTsCheckerWebpackPlugin(),
     ],

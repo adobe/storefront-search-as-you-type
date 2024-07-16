@@ -257,6 +257,11 @@ const ProductItem: FC<{
         ? route({ sku: product.product.sku })
         : product.product.canonical_url;
 
+    const finalPrice =
+        product.product.price_range.minimum_price.final_price.value;
+    const regularPrice =
+        product.product.price_range.minimum_price.regular_price.value;
+
     return (
         <StyledLink href={productUrl || ""} rel="noopener noreferrer">
             <Grid
@@ -283,12 +288,26 @@ const ProductItem: FC<{
                 <ProductImage
                     gridArea="image"
                     customWidth="100%"
-                    src={productImage || NoImageSvg}
+                    src={
+                        productImage.replace("media/catalog/product/", "") +
+                            "?width=50" || NoImageSvg
+                    }
                 />
                 <Grid
                     gridArea="productName"
                     alignSelf={isMobile ? "center" : "end"}
                 >
+                    <StyledText
+                        customFontWeight={600}
+                        className={stylingIds.productBrand}
+                    >
+                        {htmlStringDecode(
+                            product.productView.attributes.find(
+                                (attribute: { name: string }) =>
+                                    attribute.name === "brand",
+                            )?.value || "",
+                        )}
+                    </StyledText>
                     <StyledText
                         customFontWeight={600}
                         className={stylingIds.productName}
@@ -297,7 +316,32 @@ const ProductItem: FC<{
                     </StyledText>
                 </Grid>
                 <Grid gridArea="price" className={stylingIds.productPrice}>
-                    {getProductPrice(product, currencySymbol, currencyRate)}
+                    {finalPrice !== regularPrice ? (
+                        <>
+                            <span className={"regular-price"}>
+                                {getProductPrice(
+                                    regularPrice,
+                                    currencySymbol,
+                                    currencyRate,
+                                )}
+                            </span>
+                            <span className={"final-price"}>
+                                {getProductPrice(
+                                    finalPrice,
+                                    currencySymbol,
+                                    currencyRate,
+                                )}
+                            </span>
+                        </>
+                    ) : (
+                        <span className={"final-price"}>
+                            {getProductPrice(
+                                finalPrice,
+                                currencySymbol,
+                                currencyRate,
+                            )}
+                        </span>
+                    )}
                 </Grid>
             </Grid>
         </StyledLink>

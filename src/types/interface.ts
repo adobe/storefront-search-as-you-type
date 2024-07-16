@@ -132,6 +132,14 @@ export interface ProductSearchResponse {
 }
 
 export interface Product {
+    productView: {
+        attributes: [
+            {
+                name: string;
+                value: string;
+            },
+        ];
+    };
     product: {
         __typename: string;
         id: number;

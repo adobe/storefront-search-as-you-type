@@ -17,7 +17,6 @@ import {
 } from "types/interface";
 import { handleMobileDisplay, LiveSearch, searchUnitId } from "utils";
 
-
 interface LiveSearchProps {
     formSelector?: string;
     inputSelector?: string;
@@ -31,7 +30,8 @@ interface StoreDetailsProps {
     storeViewCode: string;
     config: StoreDetailsConfig;
     context: QueryContextInput;
-    apiUrl?: string;
+    apiUrl: string;
+    apiKey: string;
     // Configurable callback to handle routing to product page
     route?: RedirectRouteFunc;
     searchRoute?: {
@@ -91,7 +91,8 @@ class LiveSearchAutocomplete {
                 displayOutOfStock: this.displayOutOfStock,
             },
             context: this.context,
-            apiUrl: API_URL,
+            apiUrl: this.storeDetails.apiUrl,
+            apiKey: this.storeDetails.apiKey,
             route: this.storeDetails.route,
         });
 

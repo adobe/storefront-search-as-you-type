@@ -110,21 +110,25 @@
         <script type="text/javascript" async>
             setTimeout(() => {
                 new window.LiveSearchAutocomplete({
-                    environmentId: "ENVIRONMENT_ID",
-                    websiteCode: "WEBSITE_CODE",
-                    storeCode: "STORE_CODE",
-                    storeViewCode: "STORE_VIEW_CODE",
-                    // Example of a route function
-                    // route: ({ sku }) => {
-                    //     const redirectUrl = "/content";
-                    //     return `${redirectUrl}/${sku}`;
-                    //     // Will result to `http://localhost:8080/MT11`
-                    // },
-                    // Example for 'View all' or on Enter
-                    // searchRoute: {
-                    //   route: `content/search.html`,
-                    //   query: "search_query",
-                    // },
+                    environmentId: "f991be7b\u002D587d\u002D4660\u002Db22f\u002Da05df38abfac",
+                    websiteCode: "fr",
+                    storeCode: "fr",
+                    storeViewCode: "fr",
+                    apiUrl: "https://catalog-service-sandbox.adobe.io/graphql",
+                    apiKey: "abf934ae2ceb4ea6aa8ad0fbf5f65462",
+                    config: {
+                        pageSize: "8",
+                        minQueryLength: "3",
+                        currencySymbol: "\u20AC",
+                        currencyCode: "EUR",
+                        currencyRate: "1",
+                        displayOutOfStock: "1",
+                        allowAllProducts: "",
+                        locale: "fr_FR"
+                    },
+                    context: {
+                        customerGroup: "b6589fc6ab0dc82cf12099d1c2d40ab994e8410c"
+                    }
                 });
             }, 1000);
         </script>

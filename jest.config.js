@@ -21,9 +21,6 @@ const config = {
         "^.+\\.svg$": "<rootDir>/src/test-utils/imageTransform.js",
         // Add aliases here ---> "^alias(.*)$": "<rootDir>/src/alias-path$1", <---
     },
-    globals: {
-        API_URL: "https://commerce.adobe.io/search/graphql",
-    },
 };
 
 module.exports = config;

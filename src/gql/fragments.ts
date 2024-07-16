@@ -9,6 +9,12 @@ it.
 
 const Product = `
     fragment Product on ProductSearchItem {
+        productView {
+            attributes {
+                name
+                value
+            }
+        }
         product {
             __typename
             sku
