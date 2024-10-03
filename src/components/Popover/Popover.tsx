@@ -64,8 +64,8 @@ const Popover: FC<PopoverProps> = ({
 
     const containerStyling = `
             display: flex;
-            right: 0px;
-            margin-top: 5px;
+            position:absolute;
+            margin-top: 33px;
             box-shadow: 0px 0px 6px 0px #cacaca;
         `;
 

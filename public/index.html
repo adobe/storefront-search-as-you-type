@@ -89,7 +89,7 @@
             });
 
             mse.context.setStorefrontInstance({
-                environmentId: "aaaaaa",
+                environmentId: "08f157a5-85ea-4467-984f-ab0938107a9c",
                 instanceId: "bbbbbb",
                 environment: "test",
                 storeUrl: "https://magento.com",
@@ -108,24 +108,37 @@
             });
         </script>
         <script type="text/javascript" async>
+
+const storeDetails = {
+    environmentId: '08f157a5-85ea-4467-984f-ab0938107a9c',
+    environmentType: 'testing',
+    apiKey: 'storefront-widgets',
+    websiteCode: 'base',
+    storeCode: 'main_website_store',
+    storeViewCode: 'default',
+    config: {
+      pageSize: 8,
+      perPageConfig: {
+        pageSizeOptions: '12,24,36',
+        defaultPageSizeOption: '24',
+      },
+      minQueryLength: '2',
+      currencySymbol: '$',
+      currencyRate: '1',
+      displayOutOfStock: true,
+      allowAllProducts: false,
+    },
+    context: {
+      customerGroup: 'b6589fc6ab0dc82cf12099d1c2d40ab994e8410c',
+    },
+    route: ({ sku }) => `https://havertys.com/products.cifproductredirect.html/${sku}`,
+    searchRoute: {
+      route: 'https://havertys.com/search',
+      query: 'search_query',
+    },
+  };
             setTimeout(() => {
-                new window.LiveSearchAutocomplete({
-                    environmentId: "ENVIRONMENT_ID",
-                    websiteCode: "WEBSITE_CODE",
-                    storeCode: "STORE_CODE",
-                    storeViewCode: "STORE_VIEW_CODE",
-                    // Example of a route function
-                    // route: ({ sku }) => {
-                    //     const redirectUrl = "/content";
-                    //     return `${redirectUrl}/${sku}`;
-                    //     // Will result to `http://localhost:8080/MT11`
-                    // },
-                    // Example for 'View all' or on Enter
-                    // searchRoute: {
-                    //   route: `content/search.html`,
-                    //   query: "search_query",
-                    // },
-                });
+                new window.LiveSearchAutocomplete(storeDetails);
             }, 1000);
         </script>
     </body>
