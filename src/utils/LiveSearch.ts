@@ -87,7 +87,7 @@ class LiveSearch {
         this.currencySymbol = config?.currencySymbol ?? "";
         this.currencyRate = config?.currencyRate ?? "1";
         this.displayInStockOnly =
-            config?.displayOutOfStock === ("1" || true) ? false : true; 
+        config?.displayOutOfStock === "1" || config?.displayOutOfStock === true ? false : true;
         this.searchUnitId = searchUnitId;
         this.context = context || { customerGroup: "" };
         this.context.userViewHistory = getUserViewHistory() || [];
