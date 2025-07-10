@@ -7,7 +7,7 @@ module.exports = merge(commonConfig, {
     
     plugins: [
         new webpack.DefinePlugin({
-            API_URL: JSON.stringify("https://commerce.adobe.io/search/graphql"),
+            API_URL: JSON.stringify("https://catalog-service.adobe.io/graphql"),
         }),
     ],
     optimization: {

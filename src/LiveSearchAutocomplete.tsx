@@ -17,7 +17,6 @@ import {
 } from "types/interface";
 import { handleMobileDisplay, LiveSearch, searchUnitId } from "utils";
 
-
 interface LiveSearchProps {
     formSelector?: string;
     inputSelector?: string;
@@ -49,9 +48,10 @@ class LiveSearchAutocomplete {
     private minQueryLength: number;
     private searchButton: HTMLLabelElement;
     private pageSize: number;
-    private currencySymbol: string;
+    private currencyCode: string;
     private currencyRate: string;
     private displayOutOfStock: string | boolean;
+    private locale: string;
     private context: QueryContextInput;
 
     constructor(storeDetails: StoreDetailsProps);
@@ -72,9 +72,10 @@ class LiveSearchAutocomplete {
         this.pageSize = Number(storeDetails.config?.pageSize)
             ? Number(storeDetails.config?.pageSize)
             : 6; // default to 6
-        this.currencySymbol = storeDetails.config?.currencySymbol ?? "$";
+        this.currencyCode = storeDetails.config?.currencyCode ?? "USD";
         this.currencyRate = storeDetails.config?.currencyRate ?? "1";
         this.displayOutOfStock = storeDetails.config?.displayOutOfStock ?? "1"; // default to display out of stock items
+        this.locale = storeDetails.config?.locale ?? "en_US";
         this.context = storeDetails.context;
 
         this.search = new LiveSearch({
@@ -86,7 +87,7 @@ class LiveSearchAutocomplete {
             config: {
                 minQueryLength: this.minQueryLength,
                 pageSize: this.pageSize,
-                currencySymbol: this.currencySymbol,
+                currencyCode: this.currencyCode,
                 currencyRate: this.currencyRate,
                 displayOutOfStock: this.displayOutOfStock,
             },
@@ -117,9 +118,10 @@ class LiveSearchAutocomplete {
                 resultsSelector={this.resultsSelector}
                 pageSize={this.pageSize}
                 minQueryLength={this.minQueryLength}
-                currencySymbol={this.currencySymbol}
+                currencyCode={this.currencyCode}
                 currencyRate={this.currencyRate}
                 displayInStockOnly={displayInStockOnly}
+                locale={this.locale}
                 route={this.storeDetails.route}
                 searchRoute={this.storeDetails.searchRoute}
             />,

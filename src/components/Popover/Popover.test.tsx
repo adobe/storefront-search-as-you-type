@@ -30,7 +30,7 @@ const selectors = {
     form: "search_mini_form",
     results: "search_autocomplete",
     pageSize: 6,
-    currencySymbol: "$",
+    currencyCode: "USD",
     currencyRate: "1",
     active: true,
     minQueryLengthHit: true,
@@ -126,7 +126,7 @@ test("Popover renders currency symbol", () => {
             formRef={mockFormRef}
             resultsRef={mockResultsRef}
             pageSize={selectors.pageSize}
-            currencySymbol={selectors.currencySymbol}
+            currencyCode={selectors.currencyCode}
             currencyRate={selectors.currencyRate}
         />,
     );

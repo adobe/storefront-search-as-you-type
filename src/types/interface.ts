@@ -32,7 +32,7 @@ export interface ClientProps {
 export interface StoreDetailsConfig {
     minQueryLength?: number;
     pageSize?: number;
-    currencySymbol?: string;
+    currencyCode?: string;
     currencyRate?: string;
     currentCategoryUrlPath?: string;
     categoryName?: string;
@@ -96,7 +96,7 @@ export interface ProductSearchSortInput {
 }
 
 export interface QueryContextInput {
-    customerGroup: string;
+    customerGroup?: string;
     userViewHistory?: { sku: string; dateTime: string }[];
 }
 

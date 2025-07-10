@@ -20,9 +20,10 @@ interface AttachedPopoverProps {
     ) => Promise<ProductSearchResponse>;
     pageSize?: number;
     minQueryLength?: number;
-    currencySymbol?: string;
+    currencyCode?: string;
     currencyRate?: string;
     displayInStockOnly?: boolean;
+    locale?: string;
     formSelector?: string;
     inputSelector?: string;
     resultsSelector?: string;
@@ -40,12 +41,13 @@ const AttachedPopover: FC<AttachedPopoverProps> = (
         performSearch,
         pageSize,
         minQueryLength,
-        currencySymbol,
+        currencyCode,
         currencyRate,
         formSelector,
         inputSelector,
         resultsSelector,
         displayInStockOnly,
+        locale,
         route,
         searchRoute,
     } = props;
@@ -99,8 +101,9 @@ const AttachedPopover: FC<AttachedPopoverProps> = (
             inputRef={inputRef}
             response={results}
             pageSize={pageSize}
-            currencySymbol={currencySymbol}
+            currencyCode={currencyCode}
             currencyRate={currencyRate}
+            locale={locale}
             minQueryLengthHit={minQueryLengthHit}
             route={route}
             {...focusProps}
@@ -108,4 +111,4 @@ const AttachedPopover: FC<AttachedPopoverProps> = (
     );
 };
 
-export default AttachedPopover;
+export { AttachedPopover };

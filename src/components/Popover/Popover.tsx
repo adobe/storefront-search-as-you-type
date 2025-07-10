@@ -7,6 +7,7 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
+import { useTranslation } from "hooks/useTranslation";
 import React, { FC } from "react";
 import {
     getProductImageURL,
@@ -35,17 +36,12 @@ interface PopoverProps {
     resultsRef: React.MutableRefObject<HTMLDivElement | null>;
     inputRef: React.MutableRefObject<HTMLInputElement | null>;
     pageSize?: number;
-    currencySymbol?: string;
+    currencyCode?: string;
     currencyRate?: string;
+    locale?: string;
     minQueryLengthHit?: boolean;
     route?: RedirectRouteFunc;
 }
-
-const text = {
-    suggestions: "Suggestions",
-    aria: "Search term suggestions",
-    all: "View all",
-};
 
 const Popover: FC<PopoverProps> = ({
     active,
@@ -54,13 +50,16 @@ const Popover: FC<PopoverProps> = ({
     inputRef,
     resultsRef,
     pageSize = 6,
-    currencySymbol = "",
+    currencyCode = "USD",
     currencyRate = "1",
+    locale = "en_US",
     minQueryLengthHit,
     route,
 }) => {
     const products = response?.data?.productSearch.items ?? [];
     const suggestions = response?.data?.productSearch.suggestions ?? [];
+
+    const translation = useTranslation(locale);
 
     const containerStyling = `
             display: flex;
@@ -179,7 +178,7 @@ const Popover: FC<PopoverProps> = ({
                         customFontWeight={600}
                         className={stylingIds.suggestionsHeader}
                     >
-                        {text.suggestions}
+                        {translation.Popover.suggestions}
                     </StyledText>
                     {Suggestions}
                 </Grid>
@@ -207,7 +206,8 @@ const Popover: FC<PopoverProps> = ({
                                 key={product.product.sku}
                                 product={product}
                                 updateAndSubmit={updateAndSubmit}
-                                currencySymbol={currencySymbol}
+                                currencyCode={currencyCode}
+                                locale={locale}
                                 currencyRate={currencyRate}
                                 route={route}
                             />
@@ -227,7 +227,7 @@ const Popover: FC<PopoverProps> = ({
                 hoverFontWeight={600}
                 hoverPointer="pointer"
             >
-                {text.all}
+                {translation.Popover.all}
             </Grid>
         </Grid>
     );
@@ -236,10 +236,18 @@ const Popover: FC<PopoverProps> = ({
 const ProductItem: FC<{
     product: Product;
     updateAndSubmit: (queryPhrase?: string) => void;
-    currencySymbol: string;
+    currencyCode: string;
     currencyRate: string;
+    locale: string;
     route?: RedirectRouteFunc;
-}> = ({ product, updateAndSubmit, currencySymbol, currencyRate, route }) => {
+}> = ({
+    product,
+    updateAndSubmit,
+    currencyCode,
+    currencyRate,
+    locale,
+    route,
+}) => {
     const onProductClick = () => {
         window.magentoStorefrontEvents?.publish.searchProductClick(
             searchUnitId,
@@ -258,7 +266,11 @@ const ProductItem: FC<{
         : product.product.canonical_url;
 
     return (
-        <StyledLink href={productUrl || ""} rel="noopener noreferrer">
+        <StyledLink
+            className={stylingIds.productLink}
+            href={productUrl || ""}
+            rel="noopener noreferrer"
+        >
             <Grid
                 className={stylingIds.product}
                 gridTemplateAreas={
@@ -297,7 +309,12 @@ const ProductItem: FC<{
                     </StyledText>
                 </Grid>
                 <Grid gridArea="price" className={stylingIds.productPrice}>
-                    {getProductPrice(product, currencySymbol, currencyRate)}
+                    {getProductPrice(
+                        product,
+                        currencyCode,
+                        currencyRate,
+                        locale,
+                    )}
                 </Grid>
             </Grid>
         </StyledLink>

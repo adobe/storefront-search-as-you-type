@@ -15,4 +15,3 @@ export * from "./getProductImageURL";
 export * from "./getProductPrice";
 export * from "./htmlStringDecode";
 export * from "./mobileHelperFunctions";
-

@@ -15,6 +15,7 @@ const stylingIds = {
     popover: "livesearch popover-container",
     product: "livesearch product-result",
     products: "livesearch products-container",
+    productLink: "livesearch product-link",
     productName: "livesearch product-name",
     productPrice: "livesearch product-price",
     suggestion: "livesearch suggestion",

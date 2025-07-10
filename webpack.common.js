@@ -106,6 +106,12 @@ const commonConfig = {
                 exclude: /node_modules/,
             },
             {
+                enforce: "pre",
+                type: "javascript/auto",
+                test: /\.js$/,
+                loader: "source-map-loader",
+            },
+            {
                 test: /\.css$/,
                 type: "javascript/auto",
                 use: ["style-loader", "css-loader"],
