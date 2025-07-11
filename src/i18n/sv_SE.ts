@@ -7,6 +7,10 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import Popover from "./Popover";
-
-export default Popover;
+export const sv_SE = {
+    Popover: {
+        suggestions: "Förslag",
+        aria: "Söktermsförslag",
+        all: "Visa allt",
+    },
+};

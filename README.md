@@ -113,3 +113,6 @@ NOTE: the above steps need to be updated to refer to the extension updated neede
 1. Those are all the required changes. Now redeploy your adobe commerce store code and see your new custom product listing page in your storefront.
 
 _The purpose of this project is to provide a dev-ready starting point for developers to implement the search popover. The project, repo, and any accompanying assets included herein (“Assets”) are provided “as-is” for your use solely at your sole discretion, risk, and responsibility. By using these Assets, you agree Adobe will in no event be responsible for any use of the Assets, including but not limited to any customizations made thereto, by you or any third party. Adobe will not provide any support of any kind for any customizations made to the Assets by anyone._
+
+## Compatibility with Live Search PHP extension
+ - version 1.1.0 is compatible with Live Search PHP extension v4.1.0+

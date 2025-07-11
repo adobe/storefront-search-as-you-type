@@ -17,7 +17,7 @@ interface AutocompleteProps {
     performSearch: (phrase: string) => Promise<ProductSearchResponse>;
     submitSearchRedirect: (phrase: string) => void;
     pageSize?: number;
-    currencySymbol?: string;
+    currencyCode?: string;
     currencyRate?: string;
     minQueryLength?: number;
 }
@@ -27,7 +27,7 @@ const FormWithPopover: FC<AutocompleteProps> = (props: AutocompleteProps) => {
         performSearch,
         minQueryLength,
         pageSize,
-        currencySymbol,
+        currencyCode,
         currencyRate,
         submitSearchRedirect,
     } = props;
@@ -81,7 +81,7 @@ const FormWithPopover: FC<AutocompleteProps> = (props: AutocompleteProps) => {
                 inputRef={inputRef}
                 resultsRef={resultsRef}
                 pageSize={pageSize}
-                currencySymbol={currencySymbol}
+                currencyCode={currencyCode}
                 currencyRate={currencyRate}
                 minQueryLengthHit={minQueryLengthHit}
             />

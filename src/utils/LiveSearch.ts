@@ -44,9 +44,9 @@ interface QueryContextInput {
 interface StoreDetailsConfig {
     minQueryLength?: number;
     pageSize?: number;
-    currencySymbol?: string;
+    currencyCode?: string;
     currencyRate?: string;
-    displayOutOfStock?: string | boolean; 
+    displayOutOfStock?: string | boolean; // "1" will return from php escapeJs and boolean is returned if called from data-service-graphql
 }
 
 const getHeaders = (headers: MagentoHeaders) => {
@@ -64,7 +64,7 @@ const getHeaders = (headers: MagentoHeaders) => {
 class LiveSearch {
     public minQueryLength: number;
     public pageSize: number;
-    public currencySymbol: string;
+    public currencyCode: string;
     public currencyRate: string;
     public displayInStockOnly: boolean;
     private search: ClientProps;
@@ -84,10 +84,9 @@ class LiveSearch {
     }: StoreDetailsProps) {
         this.minQueryLength = config?.minQueryLength ?? 3;
         this.pageSize = Number(config?.pageSize) ? Number(config?.pageSize) : 6;
-        this.currencySymbol = config?.currencySymbol ?? "";
+        this.currencyCode = config?.currencyCode ?? "";
         this.currencyRate = config?.currencyRate ?? "1";
-        this.displayInStockOnly =
-            config?.displayOutOfStock === ("1" || true) ? false : true; 
+        this.displayInStockOnly = config?.displayOutOfStock != "1"; // if displayOutOfStock, then we should display all items; != is intentional for type coercion.
         this.searchUnitId = searchUnitId;
         this.context = context || { customerGroup: "" };
         this.context.userViewHistory = getUserViewHistory() || [];

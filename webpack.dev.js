@@ -21,7 +21,9 @@ const devConfig = merge(commonConfig, {
             filename: "index.html",
         }),
         new webpack.DefinePlugin({
-            API_URL: JSON.stringify("https://commerce.adobe.io/search/graphql"),
+            API_URL: JSON.stringify(
+                "https://catalog-service.adobe.io/graphql",
+            ),
         }),
         new ForkTsCheckerWebpackPlugin(),
     ],
@@ -32,8 +34,8 @@ module.exports = env => {
         return merge(devConfig, {
             resolve: {
                 alias: {
-                    "react": "preact/compat",
-                    "react-dom": "preact/compat",
+                    "react": "preact-compat",
+                    "react-dom": "preact-compat",
                 },
             },
         });
