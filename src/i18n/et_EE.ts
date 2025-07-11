@@ -7,6 +7,10 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-import AttachedPopover from "./AttachedPopover";
-
-export default AttachedPopover;
+export const et_EE = {
+    Popover: {
+        suggestions: "Soovitused",
+        aria: "Otsingusõnade soovitused",
+        all: "Vaata kõiki",
+    },
+};

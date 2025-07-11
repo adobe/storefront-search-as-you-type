@@ -1,20 +1,6 @@
-/*
-Copyright 2024 Adobe
-All Rights Reserved.
-
-NOTICE: Adobe permits you to use, modify, and distribute this file in
-accordance with the terms of the Adobe license agreement accompanying
-it.
-*/
-
 import AttachedPopover from "components/AttachedPopover";
-import { default as React } from "react";
+import React from "react";
 import { createRoot } from "react-dom/client";
-import {
-    QueryContextInput,
-    RedirectRouteFunc,
-    StoreDetailsConfig,
-} from "types/interface";
 import { handleMobileDisplay, LiveSearch, searchUnitId } from "utils";
 
 interface LiveSearchProps {
@@ -37,6 +23,28 @@ interface StoreDetailsProps {
         route: string;
         query: string;
     };
+}
+type RedirectRouteFunc = ({
+    sku,
+    urlKey,
+    identifier,
+}: {
+    sku: string;
+    urlKey?: string;
+    identifier?: string;
+}) => string;
+
+interface StoreDetailsConfig {
+    minQueryLength: number;
+    pageSize: number;
+    currencyCode: string;
+    currencyRate: string;
+    displayOutOfStock?: string | boolean;
+    locale: string;
+}
+
+interface QueryContextInput {
+    customerGroup: string;
 }
 
 class LiveSearchAutocomplete {
