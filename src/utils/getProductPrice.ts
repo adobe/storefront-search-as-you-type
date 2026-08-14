@@ -37,28 +37,26 @@ const getProductPrice = (
     currencyRate: string,
     locale: string,
 ): string => {
-    let currency =
-        product.product.price_range.minimum_price.regular_price.currency;
+    const productPrice =
+        product.productView.price ?? product.productView.priceRange?.minimum;
+
+    const price = productPrice?.final.amount.value;
+
+    if (price === undefined || price === null) {
+        return "";
+    }
+
+    let currency = productPrice?.regular.amount.currency ?? "USD";
     // if base currency is configured within Commerce, that symbol should be used
     if (currencyCode) {
         currency = currencyCode;
     }
 
-    const price = product.product.price_range.minimum_price.final_price.value;
-
     const convertedPrice = currencyRate
         ? price * parseFloat(currencyRate)
         : price;
 
-    if (price === null) {
-        return "";
-    } else {
-        return getFormatPriceByLocale(
-            convertedPrice.toFixed(2),
-            currency,
-            locale,
-        );
-    }
+    return getFormatPriceByLocale(convertedPrice.toFixed(2), currency, locale);
 };
 
 export { getProductPrice };

@@ -15,19 +15,15 @@ it.
 import { Product } from "../types/interface";
 
 const getProductImageURL = (product: Product): string => {
-    const item = product.product;
+    const item = product.productView;
 
-    let url = null;
+    const image = item.images?.find(({ roles }) =>
+        roles?.some(role =>
+            ["thumbnail", "small_image", "image"].includes(role),
+        ),
+    );
 
-    if (item.thumbnail) {
-        url = item.thumbnail.url;
-    } else if (item.small_image) {
-        url = item.small_image.url;
-    } else if (item.image) {
-        url = item.image.url;
-    }
-
-    return url ?? "";
+    return image?.url ?? item.images?.[0]?.url ?? "";
 };
 
 export { getProductImageURL };

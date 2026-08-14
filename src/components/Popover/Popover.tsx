@@ -203,7 +203,7 @@ const Popover: FC<PopoverProps> = ({
                     if (index < pageSize) {
                         return (
                             <ProductItem
-                                key={product.product.sku}
+                                key={product.productView.sku}
                                 product={product}
                                 updateAndSubmit={updateAndSubmit}
                                 currencyCode={currencyCode}
@@ -251,19 +251,22 @@ const ProductItem: FC<{
     const onProductClick = () => {
         window.magentoStorefrontEvents?.publish.searchProductClick(
             searchUnitId,
-            product.product.sku,
+            product.productView.sku,
         );
 
-        if (!route && !product.product.canonical_url) {
+        if (!route && !product.productView.url) {
             // If there's no URL on the product, populate the search bar with name and submit
-            updateAndSubmit(product.product.name);
+            updateAndSubmit(product.productView.name);
         }
     };
 
     const productImage = getProductImageURL(product);
     const productUrl = route
-        ? route({ sku: product.product.sku })
-        : product.product.canonical_url;
+        ? route({
+              sku: product.productView.sku,
+              urlKey: product.productView.urlKey ?? undefined,
+          })
+        : product.productView.url;
 
     return (
         <StyledLink
@@ -305,7 +308,7 @@ const ProductItem: FC<{
                         customFontWeight={600}
                         className={stylingIds.productName}
                     >
-                        {htmlStringDecode(product.product.name)}
+                        {htmlStringDecode(product.productView.name)}
                     </StyledText>
                 </Grid>
                 <Grid gridArea="price" className={stylingIds.productPrice}>

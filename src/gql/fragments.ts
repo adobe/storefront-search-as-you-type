@@ -7,63 +7,64 @@ accordance with the terms of the Adobe license agreement accompanying
 it.
 */
 
-const Product = `
-    fragment Product on ProductSearchItem {
-        product {
+const SearchProductView = `
+    fragment SearchProductView on ProductSearchItem {
+        productView {
             __typename
             sku
             name
-            canonical_url
-            small_image {
+            url
+            urlKey
+            images(roles: ["thumbnail", "small_image", "image"]) {
                 url
+                label
+                roles
             }
-            image {
-                url
-            }
-            thumbnail {
-                url
-            }
-            price_range {
-                minimum_price {
-                    fixed_product_taxes {
+            ... on SimpleProductView {
+                price {
+                    regular {
                         amount {
                             value
                             currency
                         }
-                        label
                     }
-                    regular_price {
-                        value
-                        currency
-                    }
-                    final_price {
-                        value
-                        currency
-                    }
-                    discount {
-                        percent_off
-                        amount_off
+                    final {
+                        amount {
+                            value
+                            currency
+                        }
                     }
                 }
-                maximum_price {
-                    fixed_product_taxes {
-                        amount {
-                            value
-                            currency
+            }
+            ... on ComplexProductView {
+                priceRange {
+                    minimum {
+                        regular {
+                            amount {
+                                value
+                                currency
+                            }
                         }
-                        label
+                        final {
+                            amount {
+                                value
+                                currency
+                            }
+                        }
                     }
-                    regular_price {
-                        value
-                        currency
-                    }
-                    final_price {
-                        value
-                        currency
-                    }
-                    discount {
-                        percent_off
-                        amount_off
+                    maximum {
+                        regular {
+                            amount {
+                                value
+                                currency
+                            }
+                        }
+                        final {
+                            amount {
+                                value
+                                currency
+                            }
+                        }
                     }
                 }
             }
@@ -71,4 +72,4 @@ const Product = `
     }
 `;
 
-export { Product };
+export { SearchProductView };
